@@ -37,7 +37,7 @@ var paidHosting = multifeed(hypercore, storage, {key: publicKey})
 
 This module is not available through npm yet as it depends on
 an experimental multifeed api, but feel free to start experimenting
-using this fork: [telamon/multifeed](https://github.com/telamon/multifeed/tree/feature/repl-api)
+using this fork: [telamon/multifeed/feature/repl-api](https://github.com/telamon/multifeed/tree/feature/repl-api)
 
 The Sigrid API can be considered stable for `v1.0.0`
 
