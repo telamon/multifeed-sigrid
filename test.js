@@ -78,9 +78,9 @@ test('Signed replication', function(t) {
     return a.map(function(f) { return f.key.toString('hex') }).sort()
   }
 
-  computer = spawnMultiFeed({restricted: true, key: pair.publicKey, secretKey: pair.secretKey }, function(){
-    laptop = spawnMultiFeed({restricted: true, key: pair.publicKey, secretKey: pair.secretKey }, function(){
-      hashbase = spawnMultiFeed({restricted: true, key: pair.publicKey },function () {
+  computer = spawnMultiFeed({key: pair.publicKey, secretKey: pair.secretKey }, function(){
+    laptop = spawnMultiFeed({key: pair.publicKey, secretKey: pair.secretKey }, function(){
+      hashbase = spawnMultiFeed({key: pair.publicKey },function () {
 
         var unsignedFeed = fkeys(hashbase.feeds())[0]
         var signedFeeds = fkeys([].concat(computer.feeds()).concat(laptop.feeds()))
