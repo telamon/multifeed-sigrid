@@ -21,7 +21,7 @@ var {publicKey, secretKey} = crypto.keyPair()
 
 // A multifeed that can create writers
 var sig = sigrid(publicKey, storage, secretKey)
-var myDevice = multifeed(hypercore, storage, {key: publicKey})
+var myDevice = multifeed(hypercore, storage)
 myDevice.use(sig)
 laptop.writer('hylog', function(err, writer) {
   writer.append({ entry: 'Today i took a stroll on the beach' })
@@ -29,7 +29,7 @@ laptop.writer('hylog', function(err, writer) {
 
 // A multifeed that cannot create replicating writers
 var sig = sigrid(publicKey, storage)
-var paidHosting = multifeed(hypercore, storage, {key: publicKey})
+var paidHosting = multifeed(hypercore, storage)
 ```
 
 
