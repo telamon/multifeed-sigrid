@@ -33,7 +33,7 @@ var paidHosting = multifeed(hypercore, storage, {key: publicKey})
 ```
 
 
-## developers-note
+**developers-note**
 
 This module is not available through npm yet as it depends on
 an experimental multifeed api, but feel free to start experimenting
