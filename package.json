@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "multifeed plugin providing signature based replication",
   "main": "index.js",
+  "repository": {
+    "url": "git://github.com/telamon/multifeed-sigrid.git"
+  },
   "scripts": {
     "test": "tape test.js"
   },
