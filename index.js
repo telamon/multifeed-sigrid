@@ -1,14 +1,31 @@
+/*
+ *  multifeed-sigrid - Signature based replication rules for noffle/multifeed
+ *  Copyright (C) <2018>  <Tony Ivanov>
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU Affero General Public License as published
+ *  by the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU Affero General Public License for more details.
+ *
+ *  You should have received a copy of the GNU Affero General Public License
+ *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 var crypto = require('hypercore-crypto')
 var debug = require('debug')('multifeed-sigrid')
 var SIGNATURES_JSON = 'signatures.json'
 var assert = require('assert')
 /**
- * key      hexstring or buffer, will only replicate feeds that are signed with
+ * @param key {String|Buffer} will only replicate feeds that are signed with
  *          this key
- * storage  A random-access storage used for persisting known signatures
+ * @param storage {RandomAccess} A random-access storage used for persisting known signatures
  *          locally
- * secret   Hexstring or Buffer, enables local writers to be signed for
- *          replication.
+ * @param secret {String|Buffer} enables local writers to be signed for replication.
  */
 function Sigrid(key, storage, secret) {
   if (!(this instanceof Sigrid)) return new Sigrid(key, storage, secret)
@@ -59,9 +76,9 @@ Sigrid.prototype.want = function(remote, next) {
 }
 
 /**
- * feed - Hexstring or buffer containing feed's key
- * signature - Hexstring or buffer containing signature
- * done(err) - Functoin (optional) called when new signature is successfully stored
+ * @param feed {String|Buffer} containing feed's key
+ * @param signature {String|Buffer} containing signature
+ * @param [done] {Function} called when new signature is successfully stored
  */
 Sigrid.prototype.setSignature = function(feed, signature, done) {
   if (typeof done !== 'function') done = function(err) { if(err) throw err }
