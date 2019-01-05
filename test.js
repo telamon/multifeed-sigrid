@@ -1,5 +1,5 @@
 var test = require('tape')
-var multifeed = require('multifeed')
+var multifeed = require('../multifeed')
 var ram = require('random-access-memory')
 var hypercore = require('hypercore')
 var crypto = require('hypercore-crypto')

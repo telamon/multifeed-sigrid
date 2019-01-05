@@ -108,17 +108,23 @@ Sigrid.prototype._reload = function (done) {
   if (typeof done !== 'function') done = function(err) { if(err) throw err }
   var self = this
   self._signatures = {}
-  self._store.read(0,4,function(err, chunk) {
-    if (err) {
-      debug('Loading signatures failed, this is normal for empty multifeeds', err.message)
-      return done()
-    }
-    var size = chunk.readUInt32LE()
-    self._store.read(4, size, function(err, chunk) {
-      if (err) return done(err)
-      self._signatures = JSON.parse(chunk.toString('utf8'))
-      debug('Signatures reloaded')
-      done(null, self._signatures)
+  self._store.stat(function(err, stat) {
+    if (stat && stat.size === 0) {
+      return done(null, self._signatures)
+    } else if (err) return done(err)
+
+    self._store.read(0,4,function(err, chunk) {
+      if (err) {
+        debug('Loading signatures failed, this is normal for empty multifeeds', err.message)
+        return done()
+      }
+      var size = chunk.readUInt32LE()
+      self._store.read(4, size, function(err, chunk) {
+        if (err) return done(err)
+        self._signatures = JSON.parse(chunk.toString('utf8'))
+        debug('Signatures reloaded')
+        done(null, self._signatures)
+      })
     })
   })
 }
