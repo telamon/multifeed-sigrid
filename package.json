@@ -1,6 +1,6 @@
 {
   "name": "multifeed-sigrid",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "multifeed plugin providing signature based replication",
   "main": "index.js",
   "repository": {
