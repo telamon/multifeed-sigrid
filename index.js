@@ -109,7 +109,7 @@ Sigrid.prototype._reload = function (done) {
   var self = this
   self._signatures = {}
   self._store.stat(function(err, stat) {
-    if (stat && stat.size === 0) {
+    if ((err && err.code === 'ENOENT') || (stat && stat.size === 0)) {
       return done(null, self._signatures)
     } else if (err) return done(err)
 
